@@ -51,7 +51,7 @@ def generate_launch_description():
         package='pcl_localization_ros2',
         executable='pcl_localization_node',
         parameters=[localization_param_dir],
-        remappings=[remappings],
+        remappings=remappings,
         output='screen')
 
     to_inactive = launch.actions.EmitEvent(
