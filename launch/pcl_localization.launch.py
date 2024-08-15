@@ -19,6 +19,10 @@ from ament_index_python.packages import get_package_share_directory
 def generate_launch_description():
 
     ld = launch.LaunchDescription()
+    remappings=[
+        ('/cloud','/rfans_driver/rfans_points'),
+        ('/imu','/imu/data')
+    ]
 
     lidar_tf = launch_ros.actions.Node(
         name='lidar_tf',
@@ -47,7 +51,7 @@ def generate_launch_description():
         package='pcl_localization_ros2',
         executable='pcl_localization_node',
         parameters=[localization_param_dir],
-        remappings=[('/cloud','/velodyne_points')],
+        remappings=[remappings],
         output='screen')
 
     to_inactive = launch.actions.EmitEvent(
