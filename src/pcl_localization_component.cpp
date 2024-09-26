@@ -203,7 +203,7 @@ void PCLLocalization::initializePubSub()
   RCLCPP_INFO(get_logger(), "initializePubSub");
 
   pose_pub_ = create_publisher<geometry_msgs::msg::PoseWithCovarianceStamped>(
-    "pcl_pose",
+    "mcl_pose",
     rclcpp::QoS(rclcpp::KeepLast(1)).transient_local().reliable());
 
   path_pub_ = create_publisher<nav_msgs::msg::Path>(
@@ -305,7 +305,7 @@ void PCLLocalization::mapReceived(const sensor_msgs::msg::PointCloud2::SharedPtr
   pcl::PointCloud<pcl::PointXYZI>::Ptr map_cloud_ptr(new pcl::PointCloud<pcl::PointXYZI>);
 
   if (msg->header.frame_id != global_frame_id_) {
-    RCLCPP_WARN(this->get_logger(), "map_frame_id does not match　global_frame_id");
+    RCLCPP_WARN(this->get_logger(), "map_frame_id does not match global_frame_id");
     return;
   }
 
